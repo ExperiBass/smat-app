@@ -1,4 +1,5 @@
 const axios = require('axios')
+const {URL, URLSearchParams} = require('node:url')
 module.exports = {
     makeRequest({
         subUrl,
@@ -17,21 +18,7 @@ module.exports = {
 
         // If query params are defined, add them to the end of the full url
         if (query) {
-            // Cicle each query entry and add to the full url in the form '&key=value'
-            Object.keys(query).forEach((queryKey, index) => {
-                // query params undefined or empty, or array of length 0
-                if (query[queryKey] === undefined || query[queryKey] === '') {
-                    return
-                }
-                if (query[queryKey].length && query[queryKey].length === 0) {
-                    return
-                }
-                if (index === 1) {
-                    fullURL += `?${queryKey}=${query[queryKey]}`
-                } else {
-                    fullURL += `&${queryKey}=${query[queryKey]}`
-                }
-            })
+            fullURL += `?${new URLSearchParams(query).toString()}` // URLSearchParams doesn't add the beginning "?"
         }
 
         // Check the URL for extra forward slashes and delete them
@@ -78,7 +65,7 @@ module.exports = {
                 return data
             }).catch(error => {
                 if (error.response) {
-                    const serverError = `${error.response.data.error}${error.response.data.error_description}`
+                    const serverError = `${error.toString()}`
                     throw module.exports.createError(serverError, `SERVER_ERROR`, fullURL)
                 }
                 // if its another error, just send the full error

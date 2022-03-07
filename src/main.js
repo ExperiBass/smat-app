@@ -72,7 +72,7 @@ module.exports = {
         if (typeof limit !== "number" || isNaN(limit)) {
             throw Error(`Argument "limit" of "getContent()" is not a number.`)
         }
-        if (typeof site !== "string" || !CONSTANTS.siteOptions.find(site)) {
+        if (typeof site !== "string" || !CONSTANTS.siteOptions.includes(site)) {
             throw Error(`Argument "site" of "getContent()" is either not a string or not one of the valid options.`)
         }
         if (typeof since !== "string" || !CONSTANTS.timestampRegex.test(since)) {
@@ -139,7 +139,7 @@ module.exports = {
         if (typeof interval !== "string") {
             throw Error(`Argument "interval" of "getTimeseries()" is not a string.`)
         }
-        if (typeof site !== "string" || !CONSTANTS.siteOptions.find(site)) {
+        if (typeof site !== "string" || !CONSTANTS.siteOptions.includes(site)) {
             throw Error(`Argument "site" of "getTimeseries()" is either not a string or not one of the valid options.`)
         }
         if (typeof since !== "string" || !CONSTANTS.timestampRegex.test(since)) {
@@ -204,7 +204,7 @@ module.exports = {
         if (typeof aggBy !== "string") {
             throw Error(`Argument "aggBy" of "getActivity()" is not a string.`)
         }
-        if (typeof site !== "string" || !CONSTANTS.siteOptions.find(site)) {
+        if (typeof site !== "string" || !CONSTANTS.siteOptions.includes(site)) {
             throw Error(`Argument "site" of "getActivity()" is either not a string or not one of the valid options.`)
         }
         if (typeof since !== "string" || !CONSTANTS.timestampRegex.test(since)) {

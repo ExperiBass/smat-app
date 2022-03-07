@@ -105,7 +105,7 @@ module.exports = {
     /**
      * Retrieve a time series.
      * @param {String} searchTerm Term to search for.
-     * @param {String} interval 
+     * @param {String} interval Unknown.
      * @param {String} site The site to search.
      * Options:
      * rumble_video
@@ -168,6 +168,34 @@ module.exports = {
             }
         })
     },
+    /**
+     * Aggregate over a particular field on a single site.
+     * @param {String} searchTerm Term to search for.
+     * @param {String} aggBy Appears to be "Aggregate By".
+     * @param {String} site The site to search.
+     * Options:
+     * rumble_video
+     * rumble_content
+     * bitchute_video
+     * bitchute_content
+     * lbry_video
+     * lbry_content
+     * 8kun
+     * 4chan
+     * gab
+     * parler
+     * win
+     * poal
+     * telegram
+     * kiwifarms
+     * gettr
+     * wimkin
+     * mewe
+     * minds
+     * @param {String} since Beginning of the date range to search. Timestamp in ISO-8601 format.
+     * @param {String} until End if the date range to search. Timestamp in ISO-8601 format.
+     * @param {Boolean} esquery Unknown. Defaults to false.
+     */
     getActivity(searchTerm, aggBy, site, since, until, esquery = false) {
         // Check for valid arguments
         if (typeof searchTerm !== "string") {

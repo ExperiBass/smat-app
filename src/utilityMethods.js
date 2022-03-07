@@ -1,5 +1,5 @@
 const axios = require('axios')
-const {URL, URLSearchParams} = require('node:url')
+const {URLSearchParams} = require('node:url')
 module.exports = {
     makeRequest({
         subUrl,
